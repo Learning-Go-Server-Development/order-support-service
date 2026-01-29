@@ -1,7 +1,7 @@
 package delegate
 
 func (s *Service) GetOrders(cid int64) *[]Order {
-	var rtnList []Order
+	rtnList := []Order{}
 	var olist []Order
 	var o1 Order
 	o1.ID = 12345555

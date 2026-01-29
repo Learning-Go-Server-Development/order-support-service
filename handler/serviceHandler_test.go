@@ -88,3 +88,94 @@ func TestServiceHandler_GetProducts(t *testing.T) {
 		})
 	}
 }
+
+func TestServiceHandler_GetOrders(t *testing.T) {
+	var sh han.ServiceHandler
+	var s del.Service
+	d := s.Get()
+	sh.Deligate = d
+	h := sh.New()
+	tests := []struct {
+		name string // description of this test case
+		// Named input parameters for target function.
+		cid string
+		w   http.ResponseWriter
+		r   *http.Request
+	}{
+		// TODO: Add test cases.
+		{
+			name: "test 1",
+			cid:  "22345",
+		},
+		{
+			name: "test 2",
+			cid:  "r22345",
+		},
+		{
+			name: "test 3",
+			cid:  "223459",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// TODO: construct the receiver type.
+			r, _ := http.NewRequest("GET", "/getStuff", nil)
+			vars := map[string]string{
+				"cid": tt.cid,
+			}
+			r = mux.SetURLVars(r, vars)
+			w := httptest.NewRecorder()
+
+			h.GetOrders(w, r)
+			if tt.name == "test 1" && w.Code != 200 {
+				t.Fail()
+			} else if tt.name == "test 2" && w.Code != 400 {
+				t.Fail()
+			}
+
+		})
+	}
+}
+
+func TestServiceHandler_GetAddresses(t *testing.T) {
+	var sh han.ServiceHandler
+	var s del.Service
+	d := s.Get()
+	sh.Deligate = d
+	h := sh.New()
+	tests := []struct {
+		name string // description of this test case
+		cid  string
+		// Named input parameters for target function.
+		w http.ResponseWriter
+		r *http.Request
+	}{
+		// TODO: Add test cases.
+		{
+			name: "test 1",
+			cid:  "22345",
+		},
+		{
+			name: "test 2",
+			cid:  "r22345",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// TODO: construct the receiver type.
+			r, _ := http.NewRequest("GET", "/getStuff", nil)
+			vars := map[string]string{
+				"cid": tt.cid,
+			}
+			r = mux.SetURLVars(r, vars)
+			w := httptest.NewRecorder()
+
+			h.GetAddresses(w, r)
+			if tt.name == "test 1" && w.Code != 200 {
+				t.Fail()
+			} else if tt.name == "test 2" && w.Code != 400 {
+				t.Fail()
+			}
+		})
+	}
+}

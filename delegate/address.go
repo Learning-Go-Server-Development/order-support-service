@@ -1,7 +1,7 @@
 package delegate
 
 func (s *Service) GetAddresses(cid int64) *[]Address {
-	var rtn []Address
+	rtn := []Address{}
 
 	var a1 Address
 	a1.ID = 111
