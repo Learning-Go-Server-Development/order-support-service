@@ -12,6 +12,7 @@ import (
 )
 
 func (h *ServiceHandler) GetCustomer(w http.ResponseWriter, r *http.Request) {
+	h.SetContentType(w)
 	vars := mux.Vars(r)
 	log.Println("vars: ", len(vars))
 	if len(vars) == 1 {
@@ -36,6 +37,7 @@ func (h *ServiceHandler) GetCustomer(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *ServiceHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
+	h.SetContentType(w)
 	products := h.Deligate.GetProducts()
 	if products != nil {
 		w.WriteHeader(http.StatusOK)
@@ -47,6 +49,7 @@ func (h *ServiceHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *ServiceHandler) GetOrders(w http.ResponseWriter, r *http.Request) {
+	h.SetContentType(w)
 	vars := mux.Vars(r)
 	log.Println("vars: ", len(vars))
 	if len(vars) == 1 {
@@ -77,6 +80,7 @@ func (h *ServiceHandler) GetOrders(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *ServiceHandler) GetAddresses(w http.ResponseWriter, r *http.Request) {
+	h.SetContentType(w)
 	vars := mux.Vars(r)
 	log.Println("vars: ", len(vars))
 	if len(vars) == 1 {
