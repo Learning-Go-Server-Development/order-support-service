@@ -4,7 +4,7 @@ type Delegate interface {
 	GetCustomer(phone string) *Customer
 	GetAddresses(cid int64) *[]Address
 	GetOrders(cid int64) *[]Order
-	GetProducts() *[]Item
+	GetProducts() *[]Product
 }
 
 type Service struct {

@@ -16,7 +16,7 @@ type Address struct {
 	ZipCode string `json:"zipCode"`
 }
 
-type Item struct {
+type Product struct {
 	ID          int64   `json:"id"`
 	SKU         string  `json:"sku"`
 	Description string  `json:"description"`
@@ -27,5 +27,5 @@ type Order struct {
 	ID          int64    `json:"id"`
 	CID         int64    `json:"cid"`
 	OrderNumber string   `json:"oid"`
-	Items       *[]int64 `json:"items"`
+	Products    *[]int64 `json:"products"`
 }

@@ -36,7 +36,7 @@ func TestService_GetOrders(t *testing.T) {
 			got := d.GetOrders(tt.cid)
 			// TODO: update the condition below to compare got with tt.want.
 			// i:= (*got)[0].Items
-			if (*got)[0].ID != tt.want && len(*(*got)[0].Items) != tt.want2 {
+			if (*got)[0].ID != tt.want && len(*(*got)[0].Products) != tt.want2 {
 				t.Errorf("GetOrders() = %v, want %v", got, tt.want)
 			}
 		})
