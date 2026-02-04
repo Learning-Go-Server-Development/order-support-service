@@ -20,7 +20,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/rs/customer/get/{phoneNumber}", h.GetCustomer).Methods("GET")
-	router.HandleFunc("/rs/products/get", h.GetProducts).Methods("GET")
+	router.HandleFunc("/rs/product/get/{sku}", h.GetProduct).Methods("GET")
 	router.HandleFunc("/rs/orders/get/{cid}", h.GetOrders).Methods("GET")
 	router.HandleFunc("/rs/addresses/get/{cid}", h.GetAddresses).Methods("GET")
 

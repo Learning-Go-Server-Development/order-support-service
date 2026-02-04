@@ -9,12 +9,14 @@ import (
 func TestService_GetProducts(t *testing.T) {
 	tests := []struct {
 		name string // description of this test case
-		want int
+		sku  string
+		want int64
 	}{
 		// TODO: Add test cases.
 		{
 			name: "test 1",
-			want: 4,
+			sku:  "2558444",
+			want: 258444,
 		},
 	}
 	for _, tt := range tests {
@@ -22,9 +24,9 @@ func TestService_GetProducts(t *testing.T) {
 			// TODO: construct the receiver type.
 			var s delegate.Service
 			d := s.Get()
-			got := d.GetProducts()
+			got := d.GetProduct(tt.sku)
 			// TODO: update the condition below to compare got with tt.want.
-			if len(*got) != 4 {
+			if got.ID != tt.want {
 				t.Errorf("GetProducts() = %v, want %v", got, tt.want)
 			}
 		})

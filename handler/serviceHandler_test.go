@@ -68,20 +68,26 @@ func TestServiceHandler_GetProducts(t *testing.T) {
 	tests := []struct {
 		name string // description of this test case
 		// Named input parameters for target function.
-		w http.ResponseWriter
-		r *http.Request
+		w   http.ResponseWriter
+		r   *http.Request
+		sku string
 	}{
 		// TODO: Add test cases.
 		{
 			name: "test 1",
+			sku:  "2558444",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			// TODO: construct the receiver type.
 			r, _ := http.NewRequest("GET", "/getStuff", nil)
+			vars := map[string]string{
+				"sku": tt.sku,
+			}
+			r = mux.SetURLVars(r, vars)
 			w := httptest.NewRecorder()
-			h.GetProducts(w, r)
+			h.GetProduct(w, r)
 			if tt.name == "test 1" && w.Code != 200 {
 				t.Fail()
 			}

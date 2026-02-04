@@ -36,16 +36,29 @@ func (h *ServiceHandler) GetCustomer(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h *ServiceHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
+func (h *ServiceHandler) GetProduct(w http.ResponseWriter, r *http.Request) {
 	h.SetContentType(w)
-	products := h.Deligate.GetProducts()
-	if products != nil {
-		w.WriteHeader(http.StatusOK)
+	vars := mux.Vars(r)
+	log.Println("vars: ", len(vars))
+	if len(vars) == 1 {
+		sku := vars["sku"]
+		log.Println("sku:", sku)
+		if sku == "" {
+			w.WriteHeader(http.StatusBadRequest)
+		} else {
+			product := h.Deligate.GetProduct(sku)
+			if product != nil {
+				w.WriteHeader(http.StatusOK)
+			} else {
+				w.WriteHeader(http.StatusBadRequest)
+			}
+			resJSON, _ := json.Marshal(product)
+			fmt.Fprint(w, string(resJSON))
+		}
 	} else {
 		w.WriteHeader(http.StatusBadRequest)
 	}
-	resJSON, _ := json.Marshal(products)
-	fmt.Fprint(w, string(resJSON))
+
 }
 
 func (h *ServiceHandler) GetOrders(w http.ResponseWriter, r *http.Request) {

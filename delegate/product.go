@@ -1,6 +1,7 @@
 package delegate
 
-func (s *Service) GetProducts() *[]Product {
+func (s *Service) GetProduct(sku string) *Product {
+	var rtn Product
 	var i1 Product
 	i1.ID = 12345
 	i1.SKU = "123444"
@@ -28,5 +29,12 @@ func (s *Service) GetProducts() *[]Product {
 	var ilist []Product
 	ilist = append(ilist, i1, i2, i3, i4)
 
-	return &ilist
+	for _, p := range ilist {
+		if p.SKU == sku {
+			rtn = p
+			break
+		}
+	}
+
+	return &rtn
 }
